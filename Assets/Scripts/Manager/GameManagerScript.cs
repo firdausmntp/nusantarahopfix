@@ -1,17 +1,21 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManagerScript : MonoBehaviour
 {
-    public Transform player;     // Drag objek player ke sini di Inspector
-    public float fallThreshold = -10f; // Batas bawah, kalau player jatuh sampai Y ini, game over
+    public Transform player;
+    public float fallThreshold = -10f;
+    public GameObject gameOverPanel; // Drag panel GameOver dari Canvas ke sini
+
+    private bool gameOver = false;
 
     void Update()
     {
-        if (player.position.y < fallThreshold)
+        if (!gameOver && player.position.y < fallThreshold)
         {
+            gameOver = true;
             Debug.Log("Player jatuh! Game Over!");
-            SceneManager.LoadScene("GameOver"); // Pastikan scene ini sudah ada di Build Settings
+            gameOverPanel.SetActive(true);
+            Time.timeScale = 0f; // Optional: pause game
         }
     }
 }

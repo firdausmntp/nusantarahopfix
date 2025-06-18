@@ -5,14 +5,14 @@ public class GameOverButtons : MonoBehaviour
 {
     public void Home()
     {
-        SceneManager.LoadScene("MainMenu"); // Sesuaikan nama scene jika perlu
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void Retry()
     {
-          SceneManager.LoadScene("Level1");
-        // Mengulang scene yang sedang dimainkan
-        // string currentScene = SceneManager.GetActiveScene().name;
-        // SceneManager.LoadScene(currentScene);
+        Time.timeScale = 1f;
+        string currentScene = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentScene);
     }
 }
