@@ -1,0 +1,90 @@
+[
+  {
+    "id": 1,
+    "pertanyaan": "Gunung tertinggi di Pulau Jawa adalah...",
+    "pilihan": {
+      "A": "Gunung Bromo",
+      "B": "Gunung Merapi",
+      "C": "Gunung Rinjani",
+      "D": "Gunung Semeru"
+    },
+    "jawaban_benar": "D"
+  },
+  {
+    "id": 2,
+    "pertanyaan": "Gunung Rinjani terletak di provinsi...",
+    "pilihan": {
+      "A": "Bali",
+      "B": "Nusa Tenggara Barat",
+      "C": "Nusa Tenggara Timur",
+      "D": "Jawa Timur"
+    },
+    "jawaban_benar": "B"
+  },
+  {
+    "id": 3,
+    "pertanyaan": "Danau Toba terletak di pulau...",
+    "pilihan": {
+      "A": "Kalimantan",
+      "B": "Sulawesi",
+      "C": "Sumatra",
+      "D": "Jawa"
+    },
+    "jawaban_benar": "C"
+  },
+  {
+    "id": 4,
+    "pertanyaan": "Bentuk permukaan bumi seperti gunung, lembah, dan sungai disebut...",
+    "pilihan": {
+      "A": "Iklim",
+      "B": "Cuaca",
+      "C": "Kenampakan alam",
+      "D": "Kenampakan buatan"
+    },
+    "jawaban_benar": "C"
+  },
+  {
+    "id": 5,
+    "pertanyaan": "Pulau terbesar di Indonesia adalah...",
+    "pilihan": {
+      "A": "Sumatra",
+      "B": "Kalimantan",
+      "C": "Sulawesi",
+      "D": "Papua"
+    },
+    "jawaban_benar": "D"
+  },
+  {
+    "id": 6,
+    "pertanyaan": "Gunung Bromo terkenal dengan...",
+    "pilihan": {
+      "A": "Kawah biru",
+      "B": "Danau di puncaknya",
+      "C": "Lautan pasir",
+      "D": "Hutan hujan tropis"
+    },
+    "jawaban_benar": "C"
+  },
+  {
+    "id": 7,
+    "pertanyaan": "Alat yang digunakan untuk mengukur arah mata angin adalah...",
+    "pilihan": {
+      "A": "Termometer",
+      "B": "Seismograf",
+      "C": "Kompas",
+      "D": "Barometer"
+    },
+    "jawaban_benar": "C"
+  },
+  {
+    "id": 8,
+    "pertanyaan": "Sungai terpanjang di Indonesia adalah Sungai...",
+    "pilihan": {
+      "A": "Musi",
+      "B": "Brantas",
+      "C": "Kapuas",
+      "D": "Bengawan Solo"
+    },
+    "jawaban_benar": "C"
+  }
+]

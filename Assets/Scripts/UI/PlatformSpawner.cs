@@ -18,32 +18,45 @@ public class PlatformSpawner : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("🚀 Start PlatformSpawner terpanggil");
+
         if (platformPrefab == null)
         {
-            Debug.LogError("Platform Prefab belum di-assign di inspector!");
+            Debug.LogError("❌ Platform Prefab belum di-assign di inspector!");
             return;
         }
 
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-        if (playerObj != null)
+        StartCoroutine(WaitForPlayerAndSpawn());
+    }
+
+
+    IEnumerator WaitForPlayerAndSpawn()
+    {
+        while (player == null)
         {
-            player = playerObj.transform;
-        }
-        else
-        {
-            Debug.LogWarning("Player tidak ditemukan. Destroy logic akan di-skip.");
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj != null && playerObj.activeInHierarchy)
+            {
+                player = playerObj.transform;
+                spawnY = player.position.y - 2f;
+                Debug.Log("✅ Player ditemukan oleh PlatformSpawner");
+            }
+            yield return null;
         }
 
-        StartCoroutine(SpawnPlatformsGradually());
+        Debug.Log("▶️ Siap mulai spawn platform dari Y: " + spawnY);
+        yield return StartCoroutine(SpawnPlatformsGradually());
+        Debug.Log("✅ Selesai SpawnPlatformsGradually");
     }
 
     IEnumerator SpawnPlatformsGradually()
     {
+        Debug.Log("▶️ Mulai SpawnPlatformsGradually");
+
         for (int i = 0; i < numberOfPlatforms; i++)
         {
             SpawnPlatform(i);
 
-            // Setiap 2 platform, lakukan pengecekan
             if ((i + 1) % 2 == 0 && player != null)
             {
                 CheckAndDestroyPassedPlatforms();
@@ -55,23 +68,23 @@ public class PlatformSpawner : MonoBehaviour
 
     void SpawnPlatform(int index)
     {
+        if (platformPrefab == null)
+        {
+            Debug.LogError("❌ platformPrefab NULL saat runtime!");
+            return;
+        }
+
         float spawnX = Random.Range(-levelWidth, levelWidth);
         float offsetY = Random.Range(minY, maxY);
         spawnY += offsetY;
 
         Vector3 spawnPosition = new Vector3(spawnX, spawnY, 0f);
 
-        try
-        {
-            GameObject spawnedPlatform = Instantiate(platformPrefab, spawnPosition, Quaternion.identity);
-            spawnedPlatform.name = "Platform_" + index;
-            spawnedPlatforms.Add(spawnedPlatform);
-            Debug.Log($"Platform {index} spawned at {spawnPosition}");
-        }
-        catch (System.Exception e)
-        {
-            Debug.LogError($"Error saat spawn platform {index}: {e.Message}\n{e.StackTrace}");
-        }
+        GameObject spawnedPlatform = Instantiate(platformPrefab, spawnPosition, Quaternion.identity);
+        spawnedPlatform.name = "Platform_" + index;
+        spawnedPlatforms.Add(spawnedPlatform);
+
+        Debug.Log($"🟩 Platform {index} spawned at {spawnPosition}");
     }
 
     void CheckAndDestroyPassedPlatforms()
@@ -83,7 +96,7 @@ public class PlatformSpawner : MonoBehaviour
 
             if (platform.transform.position.y < player.position.y - destroyBelowDistance)
             {
-                Debug.Log($"Menghapus platform: {platform.name}");
+                Debug.Log($"🗑️ Menghapus platform: {platform.name}");
                 Destroy(platform);
                 spawnedPlatforms.RemoveAt(i);
             }
