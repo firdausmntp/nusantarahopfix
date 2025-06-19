@@ -36,11 +36,12 @@ public class WinOverGame : MonoBehaviour
 
         if (!string.IsNullOrEmpty(nextLevelName))
         {
+            Time.timeScale = 1f;
             SceneManager.LoadScene(nextLevelName);
         }
         else
         {
-            SceneManager.LoadScene("MainMenu"); // Jika tidak ada level berikutnya
+            SceneManager.LoadScene("MainMenu");
         }
     }
 }

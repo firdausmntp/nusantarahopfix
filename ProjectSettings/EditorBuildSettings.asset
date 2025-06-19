@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 2ba980bb351726340b1ae15ad2b5d5d9
   - enabled: 1
+    path: Assets/Scenes/SelectMountain.unity
+    guid: bbbe7b92d51f19c4dae4efe8f7264a3d
+  - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: ef88fdf9f77b7c74faf6dad3d9c67214
   - enabled: 1
