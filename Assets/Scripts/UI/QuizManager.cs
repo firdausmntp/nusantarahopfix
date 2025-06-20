@@ -53,6 +53,18 @@ public class QuizManager : MonoBehaviour
 
         this.gameObject.SetActive(true);
         StartQuiz();
+
+        // Nonaktifkan semua script di Main Camera
+        GameObject mainCamera = GameObject.Find("Main Camera");
+        if (mainCamera != null)
+        {
+            MonoBehaviour[] scripts = mainCamera.GetComponents<MonoBehaviour>();
+            foreach (MonoBehaviour script in scripts)
+            {
+                script.enabled = false;
+            }
+        }
+
     }
 
     public void StartQuiz()
@@ -191,6 +203,17 @@ public class QuizManager : MonoBehaviour
                     obj.SetActive(true);
             }
         }
+        // Aktifkan kembali semua script di Main Camera setelah quiz selesai
+        GameObject mainCamera = GameObject.Find("Main Camera");
+        if (mainCamera != null)
+        {
+            MonoBehaviour[] scripts = mainCamera.GetComponents<MonoBehaviour>();
+            foreach (MonoBehaviour script in scripts)
+            {
+                script.enabled = true;
+            }
+        }
+
     }
 
 
