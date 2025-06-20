@@ -52,6 +52,8 @@ public class GameManagerScript : MonoBehaviour
             return;
         }
 
+
+
         // Cek player menang
         if (currentY >= finishY)
         {
@@ -72,5 +74,14 @@ public class GameManagerScript : MonoBehaviour
             float progress = Mathf.Clamp01((maxYReached - startY) / totalDistance);
             progressBar.value = progress;
         }
+    }
+    public void GameOver()
+    {
+        if (gameOver) return;
+
+        gameOver = true;
+        Debug.Log("‼️ Game Over dipanggil dari obstacle (misal burung)");
+        gameOverPanel.SetActive(true);
+        Time.timeScale = 0f;
     }
 }
