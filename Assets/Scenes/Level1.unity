@@ -910,7 +910,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 353946029}
-  fallThreshold: -10
+  fallOffset: 2.5
   finishY: 50
   gameOverPanel: {fileID: 1965509034}
   winPanel: {fileID: 1445584604}
@@ -1166,6 +1166,7 @@ MonoBehaviour:
   target: {fileID: 353946029}
   smoothSpeed: 0.125
   yOffset: 1
+  upwardSpeed: 1
 --- !u!1 &580792081
 GameObject:
   m_ObjectHideFlags: 0
