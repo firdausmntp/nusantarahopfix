@@ -11,6 +11,28 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]
     public Vector2 externalForce = Vector2.zero;
 
+    private float originalMoveSpeed;
+    private bool isSlowed = false;
+
+    public void ApplySlow(float slowAmount, float duration)
+    {
+        if (isSlowed) return;
+
+        isSlowed = true;
+        originalMoveSpeed = moveSpeed;
+        moveSpeed = Mathf.Max(1f, moveSpeed - slowAmount); // jangan nol total
+        StartCoroutine(RemoveSlow(duration));
+    }
+
+    IEnumerator RemoveSlow(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        moveSpeed = originalMoveSpeed;
+        isSlowed = false;
+        Debug.Log("⚡ Player kembali ke kecepatan normal.");
+    }
+
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();

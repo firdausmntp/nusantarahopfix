@@ -16,6 +16,11 @@ public class PlatformSpawner : MonoBehaviour
     private Transform player;
     private List<GameObject> spawnedPlatforms = new List<GameObject>();
 
+    public GameObject bambooPrefab;
+    [Range(0f, 1f)]
+    public float bambooSpawnChance = 0.3f; // 30% platform akan punya bambu
+
+
     void Start()
     {
         Debug.Log("🚀 Start PlatformSpawner terpanggil");
@@ -85,7 +90,16 @@ public class PlatformSpawner : MonoBehaviour
         spawnedPlatforms.Add(spawnedPlatform);
 
         Debug.Log($"🟩 Platform {index} spawned at {spawnPosition}");
+
+        // 🌱 Spawn bambu di atas platform (dengan kemungkinan tertentu)
+        if (bambooPrefab != null && Random.value < bambooSpawnChance)
+        {
+            Vector3 bambooPos = spawnPosition + new Vector3(0f, 0.7f, 0f); // Sedikit di atas platform
+            GameObject bamboo = Instantiate(bambooPrefab, bambooPos, Quaternion.identity);
+            Debug.Log($"🎍 Bambu spawned di atas Platform_{index} pada {bambooPos}");
+        }
     }
+
 
     void CheckAndDestroyPassedPlatforms()
     {
