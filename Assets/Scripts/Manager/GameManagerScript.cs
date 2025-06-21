@@ -5,7 +5,7 @@ public class GameManagerScript : MonoBehaviour
 {
     [Header("Player & Finish")]
     public Transform player;
-    public float fallThreshold = -10f;
+    public float fallOffset = 2.5f;   // Jarak aman dari kamera sebelum game over
     public float finishY = 50f;
 
     [Header("UI Panels")]
@@ -26,7 +26,7 @@ public class GameManagerScript : MonoBehaviour
             startY = player.position.y;
             maxYReached = startY;
 
-            // Inisialisasi progress bar di awal
+            // Inisialisasi progress bar
             if (progressBar != null)
             {
                 progressBar.minValue = 0f;
@@ -42,11 +42,14 @@ public class GameManagerScript : MonoBehaviour
 
         float currentY = player.position.y;
 
-        // Cek player jatuh
-        if (currentY < fallThreshold)
+        // ✅ Ambil batas bawah tampilan kamera
+        float cameraBottomY = Camera.main.transform.position.y - Camera.main.orthographicSize;
+
+        // Cek player jatuh di bawah kamera
+        if (currentY < cameraBottomY - fallOffset)
         {
             gameOver = true;
-            Debug.Log("Player jatuh! Game Over!");
+            Debug.Log("Player jatuh di bawah layar! Game Over!");
             gameOverPanel.SetActive(true);
             Time.timeScale = 0f;
             return;
@@ -75,6 +78,7 @@ public class GameManagerScript : MonoBehaviour
             progressBar.value = progress;
         }
     }
+<<<<<<< HEAD
     public void GameOver()
     {
         if (gameOver) return;
@@ -84,4 +88,7 @@ public class GameManagerScript : MonoBehaviour
         gameOverPanel.SetActive(true);
         Time.timeScale = 0f;
     }
+=======
+
+>>>>>>> dec1a5d0afd351201696dbc910d5e461b4945a3f
 }
