@@ -913,7 +913,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 353946029}
-  fallOffset: 2.5
+  fallThreshold: -10
   finishY: 50
   gameOverPanel: {fileID: 1965509034}
   winPanel: {fileID: 1445584604}
@@ -1169,7 +1169,6 @@ MonoBehaviour:
   target: {fileID: 353946029}
   smoothSpeed: 0.125
   yOffset: 1
-  upwardSpeed: 1
 --- !u!1 &580792081
 GameObject:
   m_ObjectHideFlags: 0
@@ -3307,53 +3306,6 @@ MonoBehaviour:
   goPanel: {fileID: 1862774492}
   player: {fileID: 353946025}
   progressBar: {fileID: 1490762251}
---- !u!1 &1407574550
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1407574552}
-  - component: {fileID: 1407574551}
-  m_Layer: 0
-  m_Name: TopiSandalSpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1407574551
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1407574550}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24c7e829a00806244856648cf24082a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  topiPrefab: {fileID: 7258889300495237489, guid: b82b92160f75a6345b07110c5fdfc963, type: 3}
-  sandalPrefab: {fileID: 2863398797026004319, guid: 1a2326fdb555b174cac9496ae6a17bb3, type: 3}
-  maxTotalItem: 4
---- !u!4 &1407574552
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1407574550}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.4664373, y: -3.2743201, z: -0.017828561}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 14
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1427045048
 GameObject:
   m_ObjectHideFlags: 0
