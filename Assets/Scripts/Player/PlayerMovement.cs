@@ -7,6 +7,32 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 15f;
     private Rigidbody2D rb;
 
+    // Tambahan: gaya eksternal seperti dari angin
+    [HideInInspector]
+    public Vector2 externalForce = Vector2.zero;
+
+    private float originalMoveSpeed;
+    private bool isSlowed = false;
+
+    public void ApplySlow(float slowAmount, float duration)
+    {
+        if (isSlowed) return;
+
+        isSlowed = true;
+        originalMoveSpeed = moveSpeed;
+        moveSpeed = Mathf.Max(1f, moveSpeed - slowAmount); // jangan nol total
+        StartCoroutine(RemoveSlow(duration));
+    }
+
+    IEnumerator RemoveSlow(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        moveSpeed = originalMoveSpeed;
+        isSlowed = false;
+        Debug.Log("⚡ Player kembali ke kecepatan normal.");
+    }
+
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -28,8 +54,16 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         float horizontal = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector2(horizontal * moveSpeed, rb.velocity.y);
 
+        // Gabungkan input horizontal dengan gaya eksternal
+        float totalX = (horizontal * moveSpeed) + externalForce.x;
+
+        rb.velocity = new Vector2(totalX, rb.velocity.y);
+
+        // Geser eksternalForce pelan-pelan ke nol (decay)
+        externalForce = Vector2.Lerp(externalForce, Vector2.zero, Time.deltaTime * 2f);
+
+        // Wrap posisi horizontal jika melewati batas
         if (transform.position.x > 6f)
             transform.position = new Vector3(-6f, transform.position.y, transform.position.z);
         else if (transform.position.x < -6f)
