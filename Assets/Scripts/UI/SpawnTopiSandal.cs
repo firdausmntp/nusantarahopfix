@@ -6,8 +6,11 @@ public class SpawnTopiSandal : MonoBehaviour
     public GameObject topiPrefab;
     public GameObject sandalPrefab;
     public int maxTotalItem = 5;
+    public Transform player;
+    public float destroyBelowDistance = 5f;
 
-    GameObject[] platform;
+    private List<GameObject> spawnedItems = new List<GameObject>();
+    private GameObject[] platform;
 
     void Start()
     {
@@ -35,7 +38,30 @@ public class SpawnTopiSandal : MonoBehaviour
             Vector2 pos = new Vector2(x, y);
 
             GameObject prefab = Random.value < 0.5f ? topiPrefab : sandalPrefab;
-            Instantiate(prefab, pos, Quaternion.identity);
+            GameObject item = Instantiate(prefab, pos, Quaternion.identity);
+            spawnedItems.Add(item);
+        }
+    }
+
+    void Update()
+    {
+        CheckAndDestroyItems();
+    }
+
+    void CheckAndDestroyItems()
+    {
+        if (player == null) return;
+
+        for (int i = spawnedItems.Count - 1; i >= 0; i--)
+        {
+            GameObject item = spawnedItems[i];
+            if (item == null) continue;
+
+            if (item.transform.position.y < player.position.y - destroyBelowDistance)
+            {
+                Destroy(item);
+                spawnedItems.RemoveAt(i);
+            }
         }
     }
 

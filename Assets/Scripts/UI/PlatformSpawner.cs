@@ -5,37 +5,27 @@ using System.Collections.Generic;
 public class PlatformSpawner : MonoBehaviour
 {
     public GameObject platformPrefab;
-    public int numberOfPlatforms = 10;
     public float levelWidth = 3f;
     public float minY = 2f;
     public float maxY = 3.5f;
-    public float spawnDelay = 0.5f;
     public float destroyBelowDistance = 5f;
+
+    public GameManagerScript gameManager;
+    public BambooSpawner bambooSpawner;
 
     private float spawnY = 0f;
     private Transform player;
     private List<GameObject> spawnedPlatforms = new List<GameObject>();
 
-    public GameObject bambooPrefab;
-    [Range(0f, 1f)]
-    public float bambooSpawnChance = 0.3f; // 30% platform akan punya bambu
-
+    private GameObject lastSpawnedPlatform;
+    private bool hasWon = false;
 
     void Start()
     {
-        Debug.Log("🚀 Start PlatformSpawner terpanggil");
-
-        if (platformPrefab == null)
-        {
-            Debug.LogError("❌ Platform Prefab belum di-assign di inspector!");
-            return;
-        }
-
-        StartCoroutine(WaitForPlayerAndSpawn());
+        StartCoroutine(WaitForPlayer());
     }
 
-
-    IEnumerator WaitForPlayerAndSpawn()
+    IEnumerator WaitForPlayer()
     {
         while (player == null)
         {
@@ -44,62 +34,50 @@ public class PlatformSpawner : MonoBehaviour
             {
                 player = playerObj.transform;
                 spawnY = player.position.y - 2f;
-                Debug.Log("✅ Player ditemukan oleh PlatformSpawner");
             }
             yield return null;
         }
-
-        Debug.Log("▶️ Siap mulai spawn platform dari Y: " + spawnY);
-        yield return StartCoroutine(SpawnPlatformsGradually());
-        Debug.Log("✅ Selesai SpawnPlatformsGradually");
     }
 
-    IEnumerator SpawnPlatformsGradually()
+    void Update()
     {
-        Debug.Log("▶️ Mulai SpawnPlatformsGradually");
+        if (player == null || gameManager == null) return;
 
-        for (int i = 0; i < numberOfPlatforms; i++)
+        if (!gameManager.IsProgressFull() && player.position.y + 10f > spawnY)
         {
-            SpawnPlatform(i);
+            SpawnPlatform(spawnedPlatforms.Count);
+            CheckAndDestroyPassedPlatforms();
+        }
 
-            if ((i + 1) % 2 == 0 && player != null)
-            {
-                CheckAndDestroyPassedPlatforms();
-            }
-
-            yield return new WaitForSeconds(spawnDelay);
+        // ✅ Deteksi kemenangan jika sudah melewati platform terakhir
+        if (!hasWon && lastSpawnedPlatform != null && player.position.y > lastSpawnedPlatform.transform.position.y + 1f)
+        {
+            hasWon = true;
+            gameManager.WinGame();
+            Debug.Log("🏁 Player menang karena melewati platform terakhir");
         }
     }
 
     void SpawnPlatform(int index)
     {
-        if (platformPrefab == null)
-        {
-            Debug.LogError("❌ platformPrefab NULL saat runtime!");
-            return;
-        }
+        if (platformPrefab == null) return;
 
         float spawnX = Random.Range(-levelWidth, levelWidth);
         float offsetY = Random.Range(minY, maxY);
         spawnY += offsetY;
 
         Vector3 spawnPosition = new Vector3(spawnX, spawnY, 0f);
+        GameObject platform = Instantiate(platformPrefab, spawnPosition, Quaternion.identity);
+        platform.name = "Platform_" + index;
+        spawnedPlatforms.Add(platform);
 
-        GameObject spawnedPlatform = Instantiate(platformPrefab, spawnPosition, Quaternion.identity);
-        spawnedPlatform.name = "Platform_" + index;
-        spawnedPlatforms.Add(spawnedPlatform);
+        lastSpawnedPlatform = platform;
 
-        Debug.Log($"🟩 Platform {index} spawned at {spawnPosition}");
-
-        // 🌱 Spawn bambu di atas platform (dengan kemungkinan tertentu)
-        if (bambooPrefab != null && Random.value < bambooSpawnChance)
+        if (bambooSpawner != null)
         {
-            Vector3 bambooPos = spawnPosition + new Vector3(0f, 0.7f, 0f); // Sedikit di atas platform
-            GameObject bamboo = Instantiate(bambooPrefab, bambooPos, Quaternion.identity);
-            Debug.Log($"🎍 Bambu spawned di atas Platform_{index} pada {bambooPos}");
+            bambooSpawner.TrySpawnBambooAbove(platform.transform);
         }
     }
-
 
     void CheckAndDestroyPassedPlatforms()
     {
@@ -110,7 +88,6 @@ public class PlatformSpawner : MonoBehaviour
 
             if (platform.transform.position.y < player.position.y - destroyBelowDistance)
             {
-                Debug.Log($"🗑️ Menghapus platform: {platform.name}");
                 Destroy(platform);
                 spawnedPlatforms.RemoveAt(i);
             }

@@ -70,6 +70,28 @@ public class GameManagerScript : MonoBehaviour
             progressBar.value = progress;
         }
     }
+    public bool IsProgressFull()
+    {
+        bool full = progressBar != null && progressBar.value >= 0.85f;
+        return full;
+    }
+
+    public void WinGame()
+    {
+        if (gameOver) return;
+
+        gameOver = true;
+        Debug.Log("🎉 Player MENANG karena melewati platform terakhir!");
+
+        if (progressBar != null)
+            progressBar.value = 1f; // 🌟 Diisi penuh saat menang
+
+        if (winPanel != null)
+            winPanel.SetActive(true);
+
+        Time.timeScale = 0f;
+    }
+
 
     public void GameOver()
     {
