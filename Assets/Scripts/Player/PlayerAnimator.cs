@@ -16,9 +16,8 @@ public class PlayerAnimator : MonoBehaviour
     public RuntimeAnimatorController sandalController;
 
     public PlayerMovement playerMovement;
-    public float sandalBonusJump = 5f;
-    public float efekTopiDuration = 3f;
-    public float efekSandalDuration = 3f;
+    public float efekTopiDuration = 10f;
+    public float efekSandalDuration = 10f;
 
     private bool isWearingTopi = false;
     private bool isWearingSandal = false;
@@ -60,14 +59,14 @@ public class PlayerAnimator : MonoBehaviour
     IEnumerator SandalDurationCoroutine()
     {
         float originalJump = playerMovement.jumpForce;
-        playerMovement.jumpForce += sandalBonusJump;
-        Debug.Log($"⬆️ Efek sandal aktif: jumpForce = {playerMovement.jumpForce}");
+        playerMovement.jumpForce *= 1.1f; // Tambah 10%
+        Debug.Log($"⬆️ Efek sandal aktif: jumpForce naik 10% jadi {playerMovement.jumpForce}");
 
         yield return new WaitForSeconds(efekSandalDuration);
 
         isWearingSandal = false;
         playerMovement.jumpForce = originalJump;
-        Debug.Log($"🛑 Efek sandal habis: jumpForce dikembalikan = {originalJump}");
+        Debug.Log($"🛑 Efek sandal habis: jumpForce dikembalikan ke {originalJump}");
 
         UpdateVisual();
     }
@@ -82,7 +81,7 @@ public class PlayerAnimator : MonoBehaviour
         if (playerMovement != null)
         {
             playerMovement.ignoreWind = false;
-            playerMovement.ResetJumpForce();
+            playerMovement.ResetJumpForce(); // Pastikan metode ini ada di PlayerMovement
             Debug.Log("🔄 Reset jump force & ignoreWind");
         }
 
