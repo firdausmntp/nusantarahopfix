@@ -242,11 +242,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3469577909622721575, guid: 0859220a90fe5394786970b2b379dddf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.1124465
+      value: 0.95
       objectReference: {fileID: 0}
     - target: {fileID: 3469577909622721575, guid: 0859220a90fe5394786970b2b379dddf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.111481
+      value: -3.11
       objectReference: {fileID: 0}
     - target: {fileID: 3469577909622721575, guid: 0859220a90fe5394786970b2b379dddf, type: 3}
       propertyPath: m_LocalPosition.z
@@ -804,7 +804,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f27ce90479f20124497b22abdb7c576a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bambooPrefab: {fileID: 0}
+  bambooPrefab: {fileID: 1902090898078948156, guid: 34fd9c3a580fe2046b66a4897aa09bc8, type: 3}
   bambooSpawnChance: 0.3
   player: {fileID: 1481963474}
   destroyBelowDistance: 5
@@ -3076,10 +3076,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7925420389532053346, guid: 34fd9c3a580fe2046b66a4897aa09bc8, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34fd9c3a580fe2046b66a4897aa09bc8, type: 3}
 --- !u!1 &842094633
@@ -4400,6 +4396,7 @@ GameObject:
   - component: {fileID: 1481963479}
   - component: {fileID: 1481963478}
   - component: {fileID: 1481963477}
+  - component: {fileID: 1481963481}
   - component: {fileID: 1481963476}
   - component: {fileID: 1481963475}
   m_Layer: 0
@@ -4468,7 +4465,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1481963473}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e53ae023689df024194a8377dba771c0, type: 3}
   m_Name: 
@@ -4485,6 +4482,7 @@ MonoBehaviour:
   sandalController: {fileID: -8066444590954438171, guid: b44ac7c369af4204294ee13ec66ce1d7, type: 3}
   topiSandalSprite: {fileID: 0}
   topiSandalController: {fileID: 0}
+  externalForce: {x: 0, y: 0}
 --- !u!114 &1481963478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4492,7 +4490,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1481963473}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 897cc2710402c8540a1e3d7a423e2d9d, type: 3}
   m_Name: 
@@ -4500,6 +4498,7 @@ MonoBehaviour:
   moveSpeed: 5
   jumpForce: 10
   externalForce: {x: 0, y: 0}
+  ignoreWind: 0
 --- !u!50 &1481963479
 Rigidbody2D:
   serializedVersion: 4
@@ -4573,6 +4572,30 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1481963481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481963473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b28d1df8e8427e4589d4c60e7d4e8fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 3626916397498700004, guid: 648533cab0d6297408e24cdd9d29c32c, type: 3}
+  animator: {fileID: 1481963476}
+  normalSprite: {fileID: -9075674744039896246, guid: 648533cab0d6297408e24cdd9d29c32c, type: 3}
+  normalController: {fileID: 2949013728413352556, guid: 648533cab0d6297408e24cdd9d29c32c, type: 3}
+  topiSprite: {fileID: 4175611031135510043, guid: 0550045bc42f1d1488d2f899fa422818, type: 3}
+  topiController: {fileID: -7418319593266194361, guid: 0550045bc42f1d1488d2f899fa422818, type: 3}
+  sandalSprite: {fileID: -2781356793172167629, guid: b44ac7c369af4204294ee13ec66ce1d7, type: 3}
+  sandalController: {fileID: -8066444590954438171, guid: b44ac7c369af4204294ee13ec66ce1d7, type: 3}
+  playerMovement: {fileID: 1481963478}
+  sandalBonusJump: 5
+  efekTopiDuration: 3
+  efekSandalDuration: 3
 --- !u!1 &1593738251
 GameObject:
   m_ObjectHideFlags: 0

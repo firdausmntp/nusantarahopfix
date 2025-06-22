@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7964157478467030276}
   - component: {fileID: 345910832883700905}
   - component: {fileID: 4245195517075659022}
+  - component: {fileID: 1942720575}
   m_Layer: 0
   m_Name: BirdObstacle 1
   m_TagString: Untagged
@@ -75,8 +76,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
-  m_Sprite: {fileID: 7952783191934501795, guid: 76fbec54a609485408f3aac2d6c0cb4a, type: 3}
+  m_SortingOrder: 4
+  m_Sprite: {fileID: -2972942567082556746, guid: 89b11d7d6b15a4544b12b003947c4a57, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,18 +101,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.016129017, y: 1.032258}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.516129, y: -1.1}
-    oldSize: {x: 1, y: 0.6451613}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.97, y: 0.6}
     newSize: {x: 1, y: 0.6451613}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.6451612}
+  m_Size: {x: 0.97, y: 0.6}
   m_EdgeRadius: 0
 --- !u!50 &345910832883700905
 Rigidbody2D:
@@ -149,3 +150,24 @@ MonoBehaviour:
   moveDirection: {x: -1, y: 0}
   moveSpeed: 4
   lifetime: 10
+--- !u!95 &1942720575
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7921194153311366560}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 3927014495995234496, guid: 2dbb4aac300806644b17917f066fb5d6, type: 3}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

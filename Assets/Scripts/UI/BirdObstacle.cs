@@ -8,8 +8,23 @@ public class BirdObstacle : MonoBehaviour
 
     void Start()
     {
+        // Balik arah tampilan berdasarkan arah gerakan
+        if (moveDirection.x > 0)
+        {
+            Vector3 scale = transform.localScale;
+            scale.x = Mathf.Abs(scale.x); // pastikan menghadap kanan
+            transform.localScale = scale;
+        }
+        else if (moveDirection.x < 0)
+        {
+            Vector3 scale = transform.localScale;
+            scale.x = -Mathf.Abs(scale.x); // pastikan menghadap kiri
+            transform.localScale = scale;
+        }
+
         Destroy(gameObject, lifetime);
     }
+
 
     void Update()
     {

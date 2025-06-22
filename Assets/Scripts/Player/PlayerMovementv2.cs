@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerMovementv2 : MonoBehaviour
 {
@@ -6,28 +7,29 @@ public class PlayerMovementv2 : MonoBehaviour
     public float jumpForce = 15f;
     private Rigidbody2D rb;
 
-    [Header("Sprite & Animator")]
     public SpriteRenderer spriteRenderer;
     public Animator animator;
 
-    [Header("Normal")]
     public Sprite normalSprite;
     public RuntimeAnimatorController normalController;
 
-    [Header("Topi")]
     public Sprite topiSprite;
     public RuntimeAnimatorController topiController;
 
-    [Header("Sandal")]
     public Sprite sandalSprite;
     public RuntimeAnimatorController sandalController;
 
-    [Header("Topi + Sandal (Optional)")]
     public Sprite topiSandalSprite;
     public RuntimeAnimatorController topiSandalController;
 
     private bool isWearingTopi = false;
     private bool isWearingSandal = false;
+
+    [HideInInspector]
+    public Vector2 externalForce = Vector2.zero;
+
+    private float originalMoveSpeed;
+    private bool isSlowed = false;
 
     void Awake()
     {
@@ -39,7 +41,7 @@ public class PlayerMovementv2 : MonoBehaviour
         StartCoroutine(DelayedJump());
     }
 
-    System.Collections.IEnumerator DelayedJump()
+    IEnumerator DelayedJump()
     {
         yield return new WaitForSeconds(0.1f);
         Jump();
@@ -48,7 +50,9 @@ public class PlayerMovementv2 : MonoBehaviour
     void Update()
     {
         float horizontal = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector2(horizontal * moveSpeed, rb.velocity.y);
+        float totalX = (horizontal * moveSpeed) + externalForce.x;
+        rb.velocity = new Vector2(totalX, rb.velocity.y);
+        externalForce = Vector2.Lerp(externalForce, Vector2.zero, Time.deltaTime * 2f);
 
         if (transform.position.x > 6f)
             transform.position = new Vector3(-6f, transform.position.y, transform.position.z);
@@ -62,13 +66,32 @@ public class PlayerMovementv2 : MonoBehaviour
         {
             ContactPoint2D contact = collision.contacts[0];
             if (contact.point.y < transform.position.y - 0.1f)
+            {
                 Jump();
+            }
         }
     }
 
     void Jump()
     {
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+    }
+
+    public void ApplySlow(float slowAmount, float duration)
+    {
+        if (isSlowed) return;
+
+        isSlowed = true;
+        originalMoveSpeed = moveSpeed;
+        moveSpeed = Mathf.Max(1f, moveSpeed - slowAmount);
+        StartCoroutine(RemoveSlow(duration));
+    }
+
+    IEnumerator RemoveSlow(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        moveSpeed = originalMoveSpeed;
+        isSlowed = false;
     }
 
     public void PakaiTopi()
@@ -87,7 +110,12 @@ public class PlayerMovementv2 : MonoBehaviour
 
     void UpdateVisual()
     {
-        if (isWearingTopi)
+        if (isWearingTopi && isWearingSandal)
+        {
+            spriteRenderer.sprite = topiSandalSprite;
+            animator.runtimeAnimatorController = topiSandalController;
+        }
+        else if (isWearingTopi)
         {
             spriteRenderer.sprite = topiSprite;
             animator.runtimeAnimatorController = topiController;
@@ -102,8 +130,5 @@ public class PlayerMovementv2 : MonoBehaviour
             spriteRenderer.sprite = normalSprite;
             animator.runtimeAnimatorController = normalController;
         }
-
-        Debug.Log($"🎭 Visual player kini: {(isWearingTopi ? "Topi" : isWearingSandal ? "Sandal" : "Normal")}");
     }
-
 }

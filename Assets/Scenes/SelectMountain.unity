@@ -205,7 +205,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 994053}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1046734037}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &994053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,7 +339,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1046734038}
+      - m_Target: {fileID: 1046734040}
         m_TargetAssemblyTypeName: SelectManager, Assembly-CSharp
         m_MethodName: ToggleExclusiveImage
         m_Mode: 3
@@ -633,7 +645,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1046734038}
+      - m_Target: {fileID: 1046734040}
         m_TargetAssemblyTypeName: SelectManager, Assembly-CSharp
         m_MethodName: ToggleExclusiveImage
         m_Mode: 3
@@ -766,7 +778,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1046734038}
+      - m_Target: {fileID: 1046734040}
         m_TargetAssemblyTypeName: SelectManager, Assembly-CSharp
         m_MethodName: ToggleExclusiveImage
         m_Mode: 3
@@ -1196,7 +1208,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1046734039}
-  - component: {fileID: 1046734038}
+  - component: {fileID: 1046734040}
   m_Layer: 0
   m_Name: SelectManager
   m_TagString: Untagged
@@ -1204,7 +1216,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1046734038
+--- !u!4 &1046734039
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1046734037}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 201.77599, y: 324.2939, z: -7.655772}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1046734040
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1222,21 +1249,6 @@ MonoBehaviour:
   image1: {fileID: 1518358828}
   image2: {fileID: 1080628930}
   image3: {fileID: 84669568}
---- !u!4 &1046734039
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1046734037}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 201.77599, y: 324.2939, z: -7.655772}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1057785615
 GameObject:
   m_ObjectHideFlags: 0
@@ -1455,7 +1467,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1046734038}
+      - m_Target: {fileID: 1046734040}
         m_TargetAssemblyTypeName: SelectManager, Assembly-CSharp
         m_MethodName: ToggleExclusiveImage
         m_Mode: 3
@@ -1787,7 +1799,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1046734038}
+      - m_Target: {fileID: 1046734040}
         m_TargetAssemblyTypeName: SelectManager, Assembly-CSharp
         m_MethodName: ToggleExclusiveImage
         m_Mode: 3
@@ -2177,7 +2189,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1046734038}
+      - m_Target: {fileID: 1046734040}
         m_TargetAssemblyTypeName: SelectManager, Assembly-CSharp
         m_MethodName: ToggleExclusiveImage
         m_Mode: 3
@@ -2273,7 +2285,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1046734038}
+      - m_Target: {fileID: 1046734040}
         m_TargetAssemblyTypeName: SelectManager, Assembly-CSharp
         m_MethodName: Home
         m_Mode: 1

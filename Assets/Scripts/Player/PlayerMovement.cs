@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     private float originalMoveSpeed;
     private bool isSlowed = false;
 
+    [HideInInspector] public bool ignoreWind = false;
+    private float defaultJumpForce;
     public void ApplySlow(float slowAmount, float duration)
     {
         if (isSlowed) return;
@@ -36,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        defaultJumpForce = jumpForce;
     }
 
     void OnEnable()
@@ -44,6 +47,10 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(DelayedJump());
     }
 
+    public void ResetJumpForce()
+    {
+        jumpForce = defaultJumpForce;
+    }
     IEnumerator DelayedJump()
     {
         yield return new WaitForSeconds(0.1f);
@@ -53,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        // Debug.Log("Kecepatan sekarang: " + moveSpeed);
         float horizontal = Input.GetAxis("Horizontal");
 
         // Gabungkan input horizontal dengan gaya eksternal

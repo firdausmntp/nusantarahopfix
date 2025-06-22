@@ -9,20 +9,21 @@ public class ItemPickup : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
 
-        PlayerMovementv2 player = other.GetComponent<PlayerMovementv2>();
-        if (player == null) return;
+        PlayerAnimator playerAnimator = other.GetComponent<PlayerAnimator>();
+        if (playerAnimator == null) return;
 
         switch (itemType)
         {
             case ItemType.Topi:
-                player.PakaiTopi();
+                playerAnimator.PakaiTopi();
                 break;
             case ItemType.Sandal:
-                player.PakaiSandal();
+                playerAnimator.PakaiSandal();
                 break;
         }
 
         Debug.Log($"🎯 Player mengambil item: {itemType}");
         Destroy(gameObject);
     }
+
 }
