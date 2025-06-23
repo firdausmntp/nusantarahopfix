@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TopiAnimasi
+  m_Controller: {fileID: 2949013728413352556, guid: 648533cab0d6297408e24cdd9d29c32c, type: 3}
+  m_Clips:
+  - m_OriginalClip: {fileID: -3100369314251171874, guid: 648533cab0d6297408e24cdd9d29c32c, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: d9bf7df8d9e594d45a713ca19b722da3, type: 2}
+  - m_OriginalClip: {fileID: 5539831331247536789, guid: 648533cab0d6297408e24cdd9d29c32c, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: 44fcefa615db4da47b4be56b55503473, type: 2}

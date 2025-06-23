@@ -4771,9 +4771,9 @@ MonoBehaviour:
   normalSprite: {fileID: -9075674744039896246, guid: 648533cab0d6297408e24cdd9d29c32c, type: 3}
   normalController: {fileID: 2949013728413352556, guid: 648533cab0d6297408e24cdd9d29c32c, type: 3}
   topiSprite: {fileID: 4175611031135510043, guid: 0550045bc42f1d1488d2f899fa422818, type: 3}
-  topiController: {fileID: 22100000, guid: 5f15d6ad6f58e0a409980b608e8ae3ca, type: 2}
+  topiController: {fileID: -7418319593266194361, guid: 0550045bc42f1d1488d2f899fa422818, type: 3}
   sandalSprite: {fileID: -2781356793172167629, guid: b44ac7c369af4204294ee13ec66ce1d7, type: 3}
-  sandalController: {fileID: 22100000, guid: 39aaba5bb315d2945a1cd803b8a2d936, type: 2}
+  sandalController: {fileID: -8066444590954438171, guid: b44ac7c369af4204294ee13ec66ce1d7, type: 3}
   playerMovement: {fileID: 1481963478}
   efekTopiDuration: 3
   efekSandalDuration: 3
@@ -5461,7 +5461,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8bf7300149d969443a93653dc5063dea, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 84081dc371aae444fbeef925a9eec9e5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
