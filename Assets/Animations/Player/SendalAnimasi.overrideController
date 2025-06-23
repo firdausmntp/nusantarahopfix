@@ -7,9 +7,9 @@ AnimatorOverrideController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: SendalAnimasi
-  m_Controller: {fileID: 2949013728413352556, guid: 648533cab0d6297408e24cdd9d29c32c, type: 3}
+  m_Controller: {fileID: 2821451305497151693, guid: 84944acdf0256334cbf710c24cc0b27f, type: 3}
   m_Clips:
-  - m_OriginalClip: {fileID: -3100369314251171874, guid: 648533cab0d6297408e24cdd9d29c32c, type: 3}
+  - m_OriginalClip: {fileID: -3100369314251171874, guid: 84944acdf0256334cbf710c24cc0b27f, type: 3}
     m_OverrideClip: {fileID: 7400000, guid: e215d9b45947d05448c24b7ab8e97099, type: 2}
-  - m_OriginalClip: {fileID: 5539831331247536789, guid: 648533cab0d6297408e24cdd9d29c32c, type: 3}
+  - m_OriginalClip: {fileID: 5539831331247536789, guid: 84944acdf0256334cbf710c24cc0b27f, type: 3}
     m_OverrideClip: {fileID: 7400000, guid: 62b88a9f99897d64999217625daf847e, type: 2}

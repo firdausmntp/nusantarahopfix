@@ -4610,7 +4610,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 1481963473}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: b053d745d6e1fa445937bc5ca7d497fb, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -4627,7 +4627,7 @@ Animator:
   m_GameObject: {fileID: 1481963473}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 2949013728413352556, guid: 648533cab0d6297408e24cdd9d29c32c, type: 3}
+  m_Controller: {fileID: 2821451305497151693, guid: 84944acdf0256334cbf710c24cc0b27f, type: 3}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -4769,14 +4769,14 @@ MonoBehaviour:
   spriteRenderer: {fileID: 3626916397498700004, guid: 648533cab0d6297408e24cdd9d29c32c, type: 3}
   animator: {fileID: 1481963476}
   normalSprite: {fileID: -9075674744039896246, guid: 648533cab0d6297408e24cdd9d29c32c, type: 3}
-  normalController: {fileID: 2949013728413352556, guid: 648533cab0d6297408e24cdd9d29c32c, type: 3}
+  normalController: {fileID: 2821451305497151693, guid: 84944acdf0256334cbf710c24cc0b27f, type: 3}
   topiSprite: {fileID: 4175611031135510043, guid: 0550045bc42f1d1488d2f899fa422818, type: 3}
   topiController: {fileID: 22100000, guid: 5f15d6ad6f58e0a409980b608e8ae3ca, type: 2}
   sandalSprite: {fileID: -2781356793172167629, guid: b44ac7c369af4204294ee13ec66ce1d7, type: 3}
   sandalController: {fileID: 22100000, guid: 39aaba5bb315d2945a1cd803b8a2d936, type: 2}
   playerMovement: {fileID: 1481963478}
-  efekTopiDuration: 10
-  efekSandalDuration: 10
+  efekTopiDuration: 2
+  efekSandalDuration: 2
 --- !u!82 &1481963482
 AudioSource:
   m_ObjectHideFlags: 0
