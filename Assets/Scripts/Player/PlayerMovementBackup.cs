@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovementBackup : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float jumpForce = 15f;
@@ -13,15 +13,14 @@ public class PlayerMovement : MonoBehaviour
     private float originalMoveSpeed;
     private bool isSlowed = false;
 
-    [HideInInspector]
-    public bool ignoreWind = false;
+    [HideInInspector] public bool ignoreWind = false;
     private float defaultJumpForce;
 
+    // 🔊 Audio lompat
     public AudioClip jumpSound;
     private AudioSource audioSource;
 
-    private Animator animator;
-
+    // ⏱️ Cooldown agar tidak spam lompat
     private float lastJumpTime = 0f;
     public float jumpCooldown = 0.2f;
 
@@ -48,18 +47,22 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         defaultJumpForce = jumpForce;
         audioSource = GetComponent<AudioSource>();
-        animator = GetComponent<Animator>();
 
+        // 🐞 Debug awal komponen
         if (audioSource == null)
             Debug.LogWarning("⚠️ AudioSource belum terpasang di GameObject!");
+        else
+            Debug.Log("✅ AudioSource ditemukan.");
+
         if (jumpSound == null)
             Debug.LogWarning("⚠️ jumpSound belum diisi di Inspector!");
-        if (animator == null)
-            Debug.LogWarning("⚠️ Animator belum terpasang!");
+        else
+            Debug.Log("✅ jumpSound siap dipakai.");
     }
 
     void OnEnable()
     {
+        Debug.Log("🔁 Player OnEnable dipanggil.");
         StartCoroutine(DelayedJump());
     }
 
@@ -71,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator DelayedJump()
     {
         yield return new WaitForSeconds(0.1f);
+        Debug.Log("🕐 Lompat otomatis setelah OnEnable.");
         Jump();
     }
 
@@ -83,15 +87,20 @@ public class PlayerMovement : MonoBehaviour
             totalX += externalForce.x;
 
         rb.velocity = new Vector2(totalX, rb.velocity.y);
+
+        // Decay gaya eksternal
         externalForce = Vector2.Lerp(externalForce, Vector2.zero, Time.deltaTime * 2f);
 
+        // Wrap posisi horizontal
         if (transform.position.x > 6f)
             transform.position = new Vector3(-6f, transform.position.y, transform.position.z);
         else if (transform.position.x < -6f)
             transform.position = new Vector3(6f, transform.position.y, transform.position.z);
 
+        // 🧪 Optional: Tes lompat manual
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            Debug.Log("🕹️ Tombol Spasi ditekan.");
             Jump();
         }
     }
@@ -104,6 +113,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (contact.normal.y > 0.5f)
                 {
+                    Debug.Log("📦 Menyentuh platform dari atas → lompat otomatis.");
                     Jump();
                     break;
                 }
@@ -119,31 +129,19 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
+        Debug.Log("🚀 Jump() dilakukan.");
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         lastJumpTime = Time.time;
-
-        // 🔛 Aktifkan animasi lompat
-        if (animator != null)
-        {
-            animator.SetBool("isJump", true);
-            StartCoroutine(ResetJumpBoolAfterDelay(0.2f)); // reset animasi
-        }
 
         // 🔊 Mainkan suara lompat
         if (jumpSound != null && audioSource != null)
         {
             audioSource.PlayOneShot(jumpSound);
+            Debug.Log("🎵 jumpSound diputar.");
         }
         else
         {
             Debug.LogWarning("❌ Tidak bisa putar jumpSound: Komponen hilang atau belum diisi.");
         }
-    }
-
-    IEnumerator ResetJumpBoolAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        if (animator != null)
-            animator.SetBool("isJump", false);
     }
 }
