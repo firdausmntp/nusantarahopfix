@@ -3668,7 +3668,6 @@ MonoBehaviour:
   sandalSprite: {fileID: -2781356793172167629, guid: b44ac7c369af4204294ee13ec66ce1d7, type: 3}
   sandalController: {fileID: -8066444590954438171, guid: b44ac7c369af4204294ee13ec66ce1d7, type: 3}
   playerMovement: {fileID: 1227016937}
-  sandalBonusJump: 5
   efekTopiDuration: 3
   efekSandalDuration: 3
 --- !u!114 &1227016936
@@ -3712,6 +3711,8 @@ MonoBehaviour:
   jumpForce: 10
   externalForce: {x: 0, y: 0}
   ignoreWind: 0
+  jumpSound: {fileID: 0}
+  jumpCooldown: 0.2
 --- !u!50 &1227016938
 Rigidbody2D:
   serializedVersion: 4
